@@ -6,6 +6,8 @@ import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import repository.BombaDeCombustivelRepository;
 
+import java.util.List;
+
 @Entity
 @RequiredArgsConstructor
 public class BombaDeCombustivelService {
@@ -20,6 +22,11 @@ public class BombaDeCombustivelService {
        return bombaDeCombustivelRepository.findById(id).orElseThrow(() ->
                 new NullPointerException("Bomba de combustivel nao encontrada pelo id" + id));
     }
+
+    public List<BombasDeCombustivel> buscarBombasDeCombustivel(){
+        return bombaDeCombustivelRepository.findAll();
+    }
+
     @Transactional
     public void deletarBombaCombustivel(Integer id){
         bombaDeCombustivelRepository.deleteById(id);
